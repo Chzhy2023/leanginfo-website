@@ -25,6 +25,12 @@
         <div class="container">
             <h2>欢迎来到乐昂信息</h2>
             <p>我们致力于为企业提供全面的ESG信息咨询及技术服务，帮助企业实现可持续发展目标。</p>
+             <div id="ai-chat">
+                <h3>ESG问答系统</h3>
+                <input type="text" id="question" placeholder="输入您的问题...">
+                <button id="askButton">提问</button>
+                <p id="answer"></p>
+            </div>
             <img src="esg_elements.jpg" alt="ESG服务">
         </div>
     </main>
@@ -33,5 +39,20 @@
             <p>&copy; 2024 乐昂信息. 保留所有权利。</p>
         </div>
     </footer>
+    <script>
+        document.getElementById('askButton').addEventListener('click', async () => {
+            const question = document.getElementById('question').value;
+            const response = await fetch('/api/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question })
+            });
+
+            const data = await response.json();
+            document.getElementById('answer').textContent = data.answer;
+        });
+    </script>
 </body>
 </html>
