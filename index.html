@@ -42,7 +42,7 @@
     <script>
         document.getElementById('askButton').addEventListener('click', async () => {
             const question = document.getElementById('question').value;
-            const response = await fetch('/api/ask', {
+            const response = await fetch('http://159.75.180.5:3000/api/ask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
